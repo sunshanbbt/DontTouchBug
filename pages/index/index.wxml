@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+  <text class="title">Do not touch bug!</text>
+  <button bindtap="startGame">开始游戏</button>
+  <button bindtap="viewRanking">英雄榜</button>
+</view>

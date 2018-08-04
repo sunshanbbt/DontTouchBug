@@ -1,0 +1,22 @@
+<!--pages/ranking/ranking.wxml-->
+<view class="ranking">
+  <view class="winners">
+    <view class="winner">
+      <image class="avatar" src="../../res/images/girl.jpg"></image>
+      <text class="name">张三</text>
+      <text class="score">127</text>
+    </view>
+    <view class="winner">
+      <image class="avatar" src="../../res/images/girl.jpg"></image>
+      <text class="name">张三</text>
+      <text class="score">127</text>
+    </view>
+    <view class="winner">
+      <image class="avatar" src="../../res/images/girl.jpg"></image>
+      <text class="name">张三</text>
+      <text class="score">127</text>
+    </view>
+  </view>
+  <view class="mine">我的得分</view>
+  <scroll-view class="list">第三名之后的得分</scroll-view>
+</view>

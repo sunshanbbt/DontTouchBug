@@ -1,0 +1,6 @@
+<!--pages/gaming/gaming.wxml-->
+<view class="container">
+  <view class="time">
+    <text>{{timeOut}}</text>
+  </view>
+</view>

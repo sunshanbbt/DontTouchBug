@@ -1,0 +1,4 @@
+/* pages/gaming/gaming.wxss */
+.time {
+  font-size: 10pt;
+}

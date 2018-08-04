@@ -1,0 +1,5 @@
+<!--pages/score/score.wxml-->
+<view class="container">
+  <button bindtap="gameAgain">再来一局</button>
+  <button bindtap="gotoIndex">返回主页</button>
+</view>
