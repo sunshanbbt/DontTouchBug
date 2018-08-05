@@ -1,1 +1,6 @@
-{}
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#8696A6",
+  "navigationBarTitleText": "别踩那个BUG",
+  "navigationBarTextStyle": "#FFF"
+}

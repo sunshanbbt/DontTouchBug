@@ -1,1 +1,6 @@
-{}
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#5ED4D5",
+  "navigationBarTitleText": "排行榜",
+  "navigationBarTextStyle": "#000"
+}

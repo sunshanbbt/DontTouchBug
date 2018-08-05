@@ -1,5 +1,11 @@
 <!--pages/score/score.wxml-->
 <view class="container">
-  <button bindtap="gameAgain">再来一局</button>
-  <button bindtap="gotoIndex">返回主页</button>
+  <view class="score">
+    <text class="num">{{score}}</text>
+    <text class="title">{{title}}</text>
+  </view>
+  <view class="control">
+    <button class="btn" bindtap="gameAgain">再来一局</button>
+    <button class="btn" bindtap="gotoIndex">返回主页</button>
+  </view>
 </view>

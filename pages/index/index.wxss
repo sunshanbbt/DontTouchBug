@@ -2,3 +2,32 @@
 .title {
   font-size: 20pt;
 }
+.logo .cursor {
+  font-size: 24pt;
+  animation: spangle 1s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+}
+@keyframes spangle {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30pt;
+  box-sizing: border-box;
+}
+.menu .btn {
+  color: #5ED4D5;
+}

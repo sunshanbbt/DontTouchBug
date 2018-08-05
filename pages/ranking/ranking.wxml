@@ -1,22 +1,36 @@
 <!--pages/ranking/ranking.wxml-->
 <view class="ranking">
   <view class="winners">
-    <view class="winner">
-      <image class="avatar" src="../../res/images/girl.jpg"></image>
-      <text class="name">张三</text>
-      <text class="score">127</text>
-    </view>
-    <view class="winner">
-      <image class="avatar" src="../../res/images/girl.jpg"></image>
-      <text class="name">张三</text>
-      <text class="score">127</text>
-    </view>
-    <view class="winner">
-      <image class="avatar" src="../../res/images/girl.jpg"></image>
-      <text class="name">张三</text>
-      <text class="score">127</text>
+    <view wx:for="{{topThree}}" class="winner">
+      <view class="avatar-box">
+        <image class="avatar" src="{{item.head}}"></image>
+      </view>
+      <text class="index">{{item.rank}}</text>
+      <text class="name">{{item.name}}</text>
+      <text class="winner-score">{{item.score}}</text>
     </view>
   </view>
-  <view class="mine">我的得分</view>
-  <scroll-view class="list">第三名之后的得分</scroll-view>
+  <view wx:if="{{userRank.rank > 3}}" class="score mine">
+    <text class="index"></text>
+    <image class="avatar" src="{{userRank.head}}"></image>
+    <view class="info">
+      <text class="name">{{userRank.name}}</text>
+      <text class="rank">第{{userRank.rank}}名</text>
+    </view>
+    <view class="score">
+      <text>{{userRank.score}}</text>
+    </view>
+  </view>
+  <view class="list">
+    <view wx:for="{{rankList}}" class="score">
+      <text class="index">{{item.rank}}</text>
+      <image class="avatar" src="{{item.head}}"></image>
+      <view class="info">
+        <text class="name">{{item.name}}</text>
+      </view>
+      <view class="score">
+        <text>{{item.score}}</text>
+      </view>
+    </view>
+  </view>
 </view>

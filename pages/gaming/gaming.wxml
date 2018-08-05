@@ -1,6 +1,10 @@
 <!--pages/gaming/gaming.wxml-->
 <view class="container">
-  <view class="time">
-    <text>{{timeOut}}</text>
+  <view style="{{lifeStyle}}" class="life"></view>
+  <view bindtap="handleTouch" class="codePane">
+    <view wx:for="{{activeCode}}" class="line">
+      <text class="num">{{index + 1}}</text>
+      <text class="code">{{item}}</text>
+    </view>
   </view>
 </view>

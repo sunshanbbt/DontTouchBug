@@ -5,7 +5,86 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rankList: [],
+    userRank: {
+      name: 'Mr Tian',
+      rank: 24,
+      score: '300',
+      head: '../../res/images/girl.jpg',
+    },
+    topThree: [
+      {
+        name: 'Mr Zhao',
+        rank: 2,
+        score: '501',
+        head: '../../res/images/girl.jpg',
+
+      },
+      {
+        name: 'Mr Qian',
+        rank: 1,
+        score: '502',
+        head: '../../res/images/girl.jpg',
+
+      },
+      {
+        name: 'Mr Sun',
+        rank: 3,
+        score: '500',
+        head: '../../res/images/girl.jpg',
+
+      }
+    ],
+    rankList: [
+      {
+        name: 'Mr Wang',
+        rank: 4,
+        score: '430',
+        head: '../../res/images/girl.jpg',
+
+      },
+      {
+        name: 'Mr Sun',
+        rank: 5,
+        score: '421',
+        head: '../../res/images/girl.jpg',
+      },
+      {
+        name: 'Mr Li',
+        rank: 6,
+        score: '420',
+        head: '../../res/images/girl.jpg',
+      },
+      {
+        name: 'Mr Li',
+        rank: 7,
+        score: '420',
+        head: '../../res/images/girl.jpg',
+      },
+      {
+        name: 'Mr Li',
+        rank: 8,
+        score: '420',
+        head: '../../res/images/girl.jpg',
+      },
+      {
+        name: 'Mr Li',
+        rank: 9,
+        score: '420',
+        head: '../../res/images/girl.jpg',
+      },
+      {
+        name: 'Mr Li',
+        rank: 10,
+        score: '420',
+        head: '../../res/images/girl.jpg',
+      },
+      {
+        name: 'Mr Li',
+        rank: 11,
+        score: '420',
+        head: '../../res/images/girl.jpg',
+      }
+    ],
   },
 
   /**

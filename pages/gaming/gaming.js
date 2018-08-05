@@ -5,8 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    timeOut: 5,
-    intervalCircle: undefined,
+    activeCode: [
+      'void main() {',
+      '  printf("Hello World");',
+      '}',
+    ],
+    life: 100,
+    lifeStyle: 'height: 100%',
   },
 
   gameOver() {
@@ -15,25 +20,17 @@ Page({
     });
   },
 
-  next() {
-    let { timeOut } = this.data;
-    timeOut -= 1;
-    if (timeOut > -1) {
+  handleTouch() {
+    let { life } = this.data;
+    life-= Math.random() * 10 + 10;
+    if (life > 0) {
       this.setData({
-        timeOut,
+        life,
+        lifeStyle: `height: ${life}%`,
       });
-      setTimeout(this.next, 1000);
     } else {
       this.gameOver();
     }
-  },
-
-  startCountDown: function () {
-    this.next();
-  },
-
-  restartCountDown: function () {
-
   },
 
   /**
@@ -41,7 +38,6 @@ Page({
    */
   onLoad: function (options) {
     console.log('页面加载啦');
-    this.startCountDown();
   },
 
   /**

@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/score/score",
     "pages/gaming/gaming",
-    "pages/ranking/ranking",
-    "pages/score/score"
+    "pages/index/index",
+    "pages/ranking/ranking"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "别踩那个BUG",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "#FFF"
   }
 }

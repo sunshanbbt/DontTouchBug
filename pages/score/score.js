@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    score: 20,
+    title: '很有潜力',
   },
 
   gameAgain() {
