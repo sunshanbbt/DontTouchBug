@@ -5,11 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activeCode: [
-      'void main() {',
-      '  printf("Hello World");',
-      '}',
-    ],
+    activeCode: 'void main() {\n  printf("Hello World");\n}',
     life: 100,
     lifeStyle: 'height: 100%',
   },
@@ -31,6 +27,18 @@ Page({
     } else {
       this.gameOver();
     }
+  },
+
+  handleTouchStart(ev) {
+    console.log(ev);
+  },
+
+  handleTouchMove(ev) {
+
+  },
+
+  handleTouchEnd(ev) {
+
   },
 
   /**

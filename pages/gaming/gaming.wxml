@@ -1,10 +1,7 @@
 <!--pages/gaming/gaming.wxml-->
 <view class="container">
   <view style="{{lifeStyle}}" class="life"></view>
-  <view bindtap="handleTouch" class="codePane">
-    <view wx:for="{{activeCode}}" class="line">
-      <text class="num">{{index + 1}}</text>
-      <text class="code">{{item}}</text>
-    </view>
+  <view bindtouchstart="handleTouchStart" class="codePane">
+    <code content="{{activeCode}}" />
   </view>
 </view>

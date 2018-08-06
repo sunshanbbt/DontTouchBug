@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/score/score",
     "pages/gaming/gaming",
     "pages/index/index",
-    "pages/ranking/ranking"
+    "pages/ranking/ranking",
+    "pages/score/score"
   ],
   "window": {
     "backgroundTextStyle": "light",
