@@ -5,13 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    score: 20,
-    title: '很有潜力',
   },
 
   gameAgain() {
     wx.navigateTo({
-      url: '../gaming/gaming',
+      url: '../cube/cube',
     });
   },
 
@@ -21,11 +19,28 @@ Page({
     });
   },
 
+  getScoreTitle(score) {
+    if (score < 50) {
+      return 'BUG写到没头发';
+    } else if (score < 100) {
+      return '生发膏要伐';
+    } else if (score < 150) {
+      return '合格的BUG手';
+    } else if (score < 200) {
+      return 'BUG总比困难多';
+    }
+    return '这智商就不要写代码了';
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const score = wx.getStorageSync('lastScore');
+
+    this.setData({
+      score,
+      title: this.getScoreTitle(score),
+    });
   },
 
   /**

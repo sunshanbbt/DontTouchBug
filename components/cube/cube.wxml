@@ -1,0 +1,10 @@
+<!--components/cube/cube.wxml-->
+<view
+  bindtap="onTouchCube"
+  class="{{active ? 'cube active' : 'cube'}}"
+>
+  <view class="inner back"></view>
+  <view class="inner front">
+    <text wx:if="{{bug}}">BUG</text>
+  </view>
+</view>

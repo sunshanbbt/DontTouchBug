@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "bug-cube": "../../components/cube/cube"
+  }
+}

@@ -1,0 +1,15 @@
+<!--pages/cube/cube.wxml-->
+<view class="header">
+  <view class="stepCount">步数:{{steps}}</view>
+  <view class="bugCount">Left:{{left}}</view>
+</view>
+<view class="cubeContainer">
+  <bug-cube
+    wx:key="id"
+    wx:for="{{cubes}}"
+    active="{{item.active}}"
+    bug="{{item.bug}}"
+    index="{{index}}"
+    bindcubetouch="onTouchCube"
+  >{{index}}</bug-cube>
+</view>
