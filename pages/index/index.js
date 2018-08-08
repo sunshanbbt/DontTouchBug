@@ -8,7 +8,7 @@ Page({
   //事件处理函数
   startGame: function() {
     wx.navigateTo({
-      url: '../gaming/gaming'
+      url: '../cube/cube'
     });
   },
   viewRanking: function () {

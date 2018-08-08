@@ -7,16 +7,18 @@ Component({
     active: Boolean,
     bug: Boolean,
     index: Number,
+    offsetX: Number,
+    offsetY: Number,
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    style: '',
   },
 
-  attached() {
-
+  ready() {
   },
 
   /**

@@ -5,6 +5,6 @@
 >
   <view class="inner back"></view>
   <view class="inner front">
-    <text wx:if="{{bug}}">BUG</text>
+    <image class="bug" wx:if="{{bug}}" src="../../res/images/bug.png" />
   </view>
 </view>

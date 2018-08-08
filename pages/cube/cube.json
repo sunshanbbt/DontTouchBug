@@ -1,4 +1,5 @@
 {
+  "navigationBarBackgroundColor": "#36aaff",
   "usingComponents": {
     "bug-cube": "../../components/cube/cube"
   }

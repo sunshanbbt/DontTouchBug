@@ -1,15 +1,39 @@
 <!--pages/cube/cube.wxml-->
-<view class="header">
-  <view class="stepCount">步数:{{steps}}</view>
-  <view class="bugCount">Left:{{left}}</view>
-</view>
-<view class="cubeContainer">
-  <bug-cube
-    wx:key="id"
-    wx:for="{{cubes}}"
-    active="{{item.active}}"
-    bug="{{item.bug}}"
-    index="{{index}}"
-    bindcubetouch="onTouchCube"
-  >{{index}}</bug-cube>
+<view class="page">
+  <view class="header">
+    <view class="stepCount">
+      <text class="label">步数:</text>
+      <text class="num">{{steps}}</text>
+    </view>
+    <view class="timer">
+      <text class="label">耗时:</text>
+      <view class="num time">{{time}}</view>
+    </view>
+  </view>
+  <view
+    class="cubeContainer"
+    bindtap="onTouchContainer"  
+  >
+    <view
+      class="cubeBox"
+      wx:key="id"
+      wx:for="{{cubes}}"
+      style="transform: translate3D({{item.offsetX}}vw, {{item.offsetY}}vw, 0)"
+    >
+      <bug-cube
+        active="{{item.active}}"
+        bug="{{item.bug}}"
+        offsetX="{{item.offsetX}}"
+        offsetY="{{item.offsetY}}"
+        index="{{index}}"
+        bindcubetouch="onTouchCube"
+      >{{index}}</bug-cube>
+    </view>
+  </view>
+  <view wx:if="{{start}}" class="startAni step_{{startAni}}">
+    <text class="num num_3">3</text>
+    <text class="num num_2">2</text>
+    <text class="num num_1">1</text>
+    <text class="num num_0">START</text>
+  </view>
 </view>
