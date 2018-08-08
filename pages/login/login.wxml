@@ -1,16 +1,23 @@
-<view wx:if="{{canIUse}}">
-    <view class='header'>
-        <image src='/images/wx_login.png'></image>
+<!--index.wxml-->
+<view class="container">
+    <view id="loading" hidden="{{loadingHidden}}">
+        <view id="loading-center">
+            <view id="loading-center-absolute">
+                <view class="object" id="object_one"></view>
+                 <view class="object" id="object_two"></view>
+                <view class="object" id="object_three"></view>
+                <view class="object" id="object_four"></view>
+                <view class="object" id="object_five"></view>
+                <view class="object" id="object_six"></view>
+                <view class="object" id="object_seven"></view>
+                <view class="object" id="object_eight"></view>
+                <view class="object" id="object_big"></view>
+            </view>
+            <view class="menu">
+              <button class="btn" type='primary' open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>开始游戏</button>
+              <!-- <button class="btn" bindtap="viewRanking">英雄榜</button> -->
+            </view>
+        </view>
     </view>
- 
-    <view class='content'>
-        <view>申请获取以下权限</view>
-        <text>获得你的公开信息(昵称，头像等)</text>
-    </view>
- 
-    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-        授权登录
-    </button>
 </view>
-<view wx:else>请升级微信版本</view>
- 
+
