@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "pages": [
     "pages/index/index",
@@ -12,4 +13,19 @@
     "navigationBarTitleText": "Do not touch bug",
     "navigationBarTextStyle": "#FFF"
   }
+=======
+{
+  "pages": [
+    "pages/index/index",
+    "pages/gaming/gaming",
+    "pages/ranking/ranking",
+    "pages/score/score"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "别踩那个BUG",
+    "navigationBarTextStyle": "#FFF"
+  }
+>>>>>>> Stashed changes
 }
