@@ -1,5 +1,5 @@
 <!--pages/score/score.wxml-->
-<view class="container">
+<view class="page">
   <view class="score">
     <text class="num">{{score}}</text>
     <text class="title">{{title}}</text>

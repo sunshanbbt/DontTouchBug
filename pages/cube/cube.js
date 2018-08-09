@@ -50,10 +50,11 @@ Page({
   },
 
   startAni(cb) {
-    setInterval(() => {
+    let startInterval = setInterval(() => {
       let { startAni } = this.data;
       startAni--;
       if (startAni == -1) {
+        clearInterval(startInterval);
         cb();
       } else {
         this.setData({
