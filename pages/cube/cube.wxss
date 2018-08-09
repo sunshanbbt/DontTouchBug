@@ -5,6 +5,7 @@
   height: 100%;
   display: flex;
   background: #36aaff;
+  padding: 0;
 }
 .header {
   width: 100vw;

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="page">
   <view class="logo">
     <text class="title">Do not touch bug</text>
     <text class="cursor">|</text>
