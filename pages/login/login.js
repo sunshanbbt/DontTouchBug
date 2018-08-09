@@ -36,7 +36,7 @@ Page({
       });
       //授权成功后，跳转进入小程序游戏界面
       wx.navigateTo({
-        url: '/pages/gaming/gaming'
+        url: '/pages/cube/cube'
       });
     } else {
       console.log('授权失败')
