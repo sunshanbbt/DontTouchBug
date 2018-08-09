@@ -1,5 +1,6 @@
 // 引入配置文件config.js
 const config = require('../../utils/config.js');
+const method = require('../../utils/method.js');
 var app = getApp();
 Page({
   data: {
@@ -7,6 +8,7 @@ Page({
   },
   bindGetUserInfo: function (e) {
     console.log('用户按了开始游戏按钮');
+    method.userScore('100','100','0');
     console.log('用户昵称' + e.detail.userInfo.nickName);
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
@@ -32,6 +34,7 @@ Page({
           //从数据库获取用户信息
           // that.queryUsreInfo();
           console.log("插入小程序登录用户信息成功！");
+          
         }
       });
       //授权成功后，跳转进入小程序游戏界面
