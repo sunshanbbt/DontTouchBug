@@ -16,9 +16,9 @@
   >
     <view
       class="cubeBox"
-      wx:key="id"
       wx:for="{{cubes}}"
-      style="transform: translate3D({{item.offsetX}}vw, {{item.offsetY}}vw, 0)"
+      wx:key="id"
+      style="transform: translateX({{item.offsetX}}vw) translateY({{item.offsetY}}vw)"
     >
       <bug-cube
         active="{{item.active}}"
@@ -36,4 +36,5 @@
     <text class="num num_1">1</text>
     <text class="num num_0">START</text>
   </view>
+  <score-modal></score-modal>
 </view>

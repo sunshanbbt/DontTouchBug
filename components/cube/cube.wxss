@@ -7,12 +7,15 @@
   width: 100%;
   height: 100%;
   background: #a6f333;
+  background: -webkit-linear-gradient(#a6f333, #dcf57e);
+  background: linear-gradient(#a6f333, #dcf57e);
   border-radius: 5pt;
   transition: transform 200ms;
   position: absolute;
   top: 0;
   font-size: 12pt;
   line-height: 100%;
+  box-shadow:1px 1px 1px #EEE;
 }
 .cube .inner .bug {
   width: 60%;
@@ -35,4 +38,24 @@
 .cube.active .inner.front {
   transform: rotateY(0);
   transition-delay: 0;
+}
+.cube.active .inner.front .bug {
+  animation: shake 100ms 10;
+}
+@keyframes shake {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(1vw);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-1vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

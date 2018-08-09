@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/score/score",
     "pages/index/index",
     "pages/cube/cube",
-    "pages/score/score",
     "pages/gaming/gaming",
     "pages/ranking/ranking"
   ],
@@ -13,5 +13,4 @@
     "navigationBarTitleText": "Do not touch bug",
     "navigationBarTextStyle": "#FFF"
   }
-
 }

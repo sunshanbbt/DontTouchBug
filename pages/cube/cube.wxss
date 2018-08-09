@@ -4,7 +4,15 @@
   width: 100%;
   height: 100%;
   display: flex;
-  background: #36aaff;
+  background-color: #db9e36;
+  background-image: -moz-radial-gradient(#FFFFFF44 30%, transparent 0),
+                    -moz-radial-gradient(#FFFFFF44 30%, transparent 0);
+  background-image: -webkit-radial-gradient(#FFFFFF44 30%, transparent 0),
+                    -webkit-radial-gradient(#FFFFFF44 30%, transparent 0);
+  background-image: radial-gradient(#FFFFFF44 30%, transparent 0),
+                    radial-gradient(#FFFFFF44 30%, transparent 0);
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
   padding: 0;
 }
 .header {
@@ -16,26 +24,35 @@
   position: absolute;
   display: flex;
   justify-content: space-between;
-  border: 2px solid #4dffff;
+  border: 2px solid #a6f33377;
   border-top: none;
   border-radius: 0 0 10px 10px;
   color: #FFF;
-  background: rgba(255, 255, 255, 0.3);
+  background: #a6f33344;
+}
+.header .stepCount,
+.header .timer {
+  display: flex;
 }
 .header .label {
-  text-shadow: 0 0 4px #053b67;
+  text-shadow: 0 1px #093f65, 1px 0 #093f65, -1px 0 #093f65, 0 -1px #093f65;
   margin-right: 4px;
+  font-weight: bolder;
+  /* -webkit-text-stroke: 1px #093f65; */
+  letter-spacing: 2pt;
+  flex-shrink: 0;
 }
 .header .num {
   text-align: right;
-  width: 20vw;
+  width: 18vw;
   height: 8vw;
   display: inline-block;
   padding: 0 10px;
-  background: #0d7090;
+  background: #a6f33399;
   border-radius: 8px;
 }
-.header .timer .num {
+.header .timer {
+  margin-left: 5pt;
 }
 .cubeContainer {
   width: 80vw;

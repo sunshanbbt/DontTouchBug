@@ -147,15 +147,15 @@ Page({
 
   randomSwipe() {
     const { cubes } = this.data;
-    let first = Math.round(Math.random() * 25);
-    // let second = Math.round(Math.random() * 25);
-    // while(first === second) {
-    //   second = Math.round(Math.random() * 25);
-    // }
-    let second = first + 1;
-    if (first % 5 === 4) {
-      second = first - 1;
+    let first = Math.round(Math.random() * 24);
+    let second = Math.round(Math.random() * 24);
+    while(first === second) {
+      second = Math.round(Math.random() * 24);
     }
+    // let second = first + 1;
+    // if (first % 5 === 4) {
+    //   second = first - 1;
+    // }
 
     this.swipeTwoCubes(cubes, first, second);
     this.setData({
@@ -164,11 +164,11 @@ Page({
   },
 
   swipeTwoCubes(list, first, second) {
-    let temp = list[first];
-    this.updateCubeOffset(temp, second);
-    this.updateCubeOffset(list[second], first);
-    list[first] = list[second];
-    list[second] = temp;
+    let temp = list[first].index;
+    list[first].index = list[second].index;
+    list[second].index = temp;
+    this.updateCubeOffset(list[first], list[first].index);
+    this.updateCubeOffset(list[second], list[second].index);
     return list;
   },
 
@@ -180,13 +180,17 @@ Page({
      */
     for (let i = 0; i < cubeCount; i++) {
       list.push({
-        id: i,
         active: false,
         bug: i <= bugCount,
       });
     }
     list.sort(cube => Math.round(Math.random()));
-    
+    // 根据初始排序分配id
+    list = list.map((cube, index) => {
+      cube.id = index;
+      cube.index = index;
+      return cube;
+    });
     return list.map((cube, index) => this.updateCubeOffset(cube, index));
   },
 

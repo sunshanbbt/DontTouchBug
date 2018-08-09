@@ -1,11 +1,25 @@
 <!--pages/score/score.wxml-->
 <view class="page">
-  <view class="score">
-    <text class="num">{{score}}</text>
-    <text class="title">{{title}}</text>
+  <view class="panel">
+    <view class="level">
+      <text class="value">{{level}}模式</text>
+    </view>
+    <view class="score">
+      <text class="num">{{score}}</text>
+    </view>
+    <view class="profile">
+      <view class="line">
+        <text class="label">耗时：</text>
+        <text class="value">{{strTime}}</text>
+      </view>
+      <view class="line">
+        <text class="label">步数：</text>
+        <text class="value">{{lastSteps}}</text>
+      </view>
+    </view>
   </view>
   <view class="control">
     <button class="btn" bindtap="gameAgain">再来一局</button>
-    <button class="btn" bindtap="gotoIndex">返回主页</button>
+    <button class="btn ghost" bindtap="gotoIndex">返回主页</button>
   </view>
 </view>
