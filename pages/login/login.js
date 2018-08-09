@@ -23,12 +23,7 @@ Page({
           gender: e.detail.userInfo.gender,
           country: e.detail.userInfo.country,
           language: e.detail.userInfo.language,
-          rdSessionKey: wx.getStorage({
-            key: 'rdSessionKey',
-            success: function(res) {
-              storage: res.data;
-            },
-          })
+          rdSessionKey: wx.getStorageSync('rdSessionKey')
         },
         header: {
           'content-type': 'application/json'
