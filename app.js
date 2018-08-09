@@ -24,7 +24,7 @@ App({
     var that = this;
     wx.checkSession({
       success: function () {
-        console.log('session未过期，暂不做任何业务处理');
+        that.getLogin();
       },
       fail: function () {
         console.log('session已过期，正在重新获取..');
@@ -44,10 +44,7 @@ App({
             url: config.queryOpenIdUrl,
             data: { code: res.code },
             success: function (res) {
-              wx.setStorage({
-                key: 'rdSessionKey',
-                data: res.data.rdSessionKey,
-              });
+              wx.setStorageSync('rdSessionKey', res.data.rdSessionKey);
               console.log("当前用户服务端返回的rdSessionKey:" + res.data.rdSessionKey);
 
             }
