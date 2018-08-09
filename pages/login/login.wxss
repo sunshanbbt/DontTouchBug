@@ -33,6 +33,11 @@
     margin-top: 100px; 
     margin-left: -85px;  
   } 
+  .rank {
+    color:aliceblue;
+    text-align: center;
+    font-size: 14px;
+  }
   .object{ 
     width: 20px; 
     height: 20px; 

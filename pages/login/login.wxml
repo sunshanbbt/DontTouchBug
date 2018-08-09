@@ -15,6 +15,7 @@
             </view>
             <view class="menu">
               <button class="btn" type='primary' open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>开始游戏</button>
+              <view class='rank'>排行榜 ></view>
               <!-- <button class="btn" bindtap="viewRanking">英雄榜</button> -->
             </view>
         </view>
