@@ -1,5 +1,6 @@
 // pages/cube/cube.js
 import { formatNumber } from '../../utils/util.js';
+
 Page({
 
   /**
