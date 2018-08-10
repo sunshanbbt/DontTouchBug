@@ -8,7 +8,6 @@ Page({
   },
   bindGetUserInfo: function (e) {
     console.log('用户按了开始游戏按钮');
-    method.userScore('100','100','0');
     console.log('用户昵称' + e.detail.userInfo.nickName);
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
