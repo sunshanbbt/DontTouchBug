@@ -1,5 +1,9 @@
 <!--components/score/score.wxml-->
 <view class="m-score">
-  
+  <view class="scoreBox">
+    <view class="info">
+      <text class="level">{{level_label}}</text>
+      <text>{{score}}</text>
+    </view>
+  </view>
 </view>
-<text>components/score/score.wxml</text>

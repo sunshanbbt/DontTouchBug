@@ -1,7 +1,5 @@
 /* components/cube/cube.wxss */
 .cube {
-  width: 15vw;
-  height: 15vw;
 }
 .cube .inner {
   width: 100%;

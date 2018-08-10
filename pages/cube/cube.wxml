@@ -11,7 +11,7 @@
     </view>
   </view>
   <view
-    class="cubeContainer"
+    class="cubeContainer {{stop ? 'stopped' : ''}}"
     bindtap="onTouchContainer"  
   >
     <view
@@ -21,6 +21,7 @@
       style="transform: translateX({{item.offsetX}}vw) translateY({{item.offsetY}}vw)"
     >
       <bug-cube
+        size="{{cubeSize}}"
         active="{{item.active}}"
         bug="{{item.bug}}"
         offsetX="{{item.offsetX}}"
@@ -36,5 +37,5 @@
     <text class="num num_1">1</text>
     <text class="num num_0">START</text>
   </view>
-  <score-modal></score-modal>
+  <score-modal wx:if="{{stop}}"></score-modal>
 </view>

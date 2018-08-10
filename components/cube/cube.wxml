@@ -2,6 +2,7 @@
 <view
   bindtap="onTouchCube"
   class="{{active ? 'cube active' : 'cube'}}"
+  style="width: {{size}}vw; height: {{size}}vw"
 >
   <view class="inner back"></view>
   <view class="inner front">

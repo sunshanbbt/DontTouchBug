@@ -1,1 +1,27 @@
 /* components/score/score.wxss */
+.m-score {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(66, 66, 66, 0.5);
+}
+.scoreBox {
+  width: 90vw;
+  height: 90vh;
+  margin: 5vh auto;
+  border: 2pt solid #FFF;
+  animation: slideDown 400ms;
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20vh);
+  }
+  50% {
+    transform: translateY(-5vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

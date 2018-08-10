@@ -1,6 +1,13 @@
 // pages/cube/cube.js
 import { formatNumber } from '../../utils/util.js';
 
+const LEVEL_CONFIG_MAP = [ // 总大小，bug数，方块偏移，每次点击交换，出错时交换
+  [4, 6, 20, false, false],  // 休闲
+  [5, 10, 16, false, false], // 娱乐
+  [5, 10, 16, false, true],  // 挑战
+  [5, 10, 16, true, true],   // 自虐
+];
+
 Page({
 
   /**
@@ -14,27 +21,56 @@ Page({
     steps: 0,
     left: 0,
     pause: false,
+    stop: false,
   },
 
   gameOver() {
-    wx.setStorageSync('lastSteps', this.data.steps);
-    wx.setStorageSync('lastMinite', this.data.minite);
-    wx.setStorageSync('lastSecond', this.data.second);
-    wx.navigateTo({
-      url: '../score/score',
-    });
-    clearInterval(this.timerInter);
+    this.clearEnv();
+    let gameOverInter = setInterval(() => {
+      let { cubes } = this.data;
+      let unActive = cubes.find(cube => !cube.active);
+      if (unActive) {
+        unActive.active = true;
+        this.setData({
+          cubes,
+        });
+      } else {
+        clearInterval(gameOverInter);
+        wx.navigateTo({
+          url: '../score/score',
+        });
+      }
+    }, 30);
   },
 
   gameInit() {
-    let list = this.generateInitialCubes(25, 12);
+    let level = wx.getStorageSync('level') || 0;
+    let [
+      size, bugCount, cubeOffset, swipeInTouch, swipeInError,
+    ] = LEVEL_CONFIG_MAP[level];
+    let cubeTotal = size * size;
+
+    Object.assign(this, {
+      size,
+      cubeTotal,
+      cubeMaxIndex: cubeTotal - 1,
+      bugCount,
+      cubeOffset,
+      swipeInTouch,
+      swipeInError,
+    });
+
+    let list = this.generateInitialCubes(cubeTotal, bugCount);
     this.setData({
+      level,
+      cubeSize: cubeOffset - 1,
       startAni: 3,
       time: '0:00',
       minite: 0,
       second: 0,
       pause: true,
       start: true,
+      stop: false,
       cubes: list,
       left: list.filter(cube => !cube.bug).length,
     });
@@ -48,6 +84,17 @@ Page({
       });
       this.startTimer();
     });
+  },
+
+  clearEnv() {
+    this.setData({
+      stop: true,
+    });
+    wx.setStorageSync('lastLevel', this.data.level);
+    wx.setStorageSync('lastSteps', this.data.steps);
+    wx.setStorageSync('lastMinite', this.data.minite);
+    wx.setStorageSync('lastSecond', this.data.second);
+    clearInterval(this.timerInter);
   },
 
   startAni(cb) {
@@ -108,23 +155,26 @@ Page({
     }
     const { index, active, bug } = ev.detail;
     let pause = false;
-    if (bug) { // 选错了清空
-      pause = true;
+    if (this.swipeInTouch) { // 每次点击都进行交换
       this.randomSwipe();
+    } else if (this.swipeInError && bug) {
+      this.randomSwipe();
+    }
+
+    if (bug) {
       setTimeout(() => {
         this.clearCubeState();
-        this.setData({
-          pause: false,
-        });
+        // this.setData({
+        //   pause: false,
+        // });
       }, 1000);
     }
+
     const { cubes, steps } = this.data;
     cubes[index].active = active;
     const left = this.countLeft(cubes);
     if (left === 0) {
-      setTimeout(() => {
-        this.gameOver();
-      }, 500);
+      this.gameOver();
     }
     this.setData({
       pause,
@@ -139,24 +189,25 @@ Page({
   },
 
   updateCubeOffset(cube, index) {
-    let col = index % 5;
-    let row = Math.floor(index / 5);
-    cube.offsetX = col * 16;
-    cube.offsetY = row * 16;
+    let col = index % this.size;
+    let row = Math.floor(index / this.size);
+    cube.offsetX = col * this.cubeOffset;
+    cube.offsetY = row * this.cubeOffset;
     return cube;
+  },
+
+  randomCubeIndex() {
+    return Math.round(Math.random() * this.cubeMaxIndex);
   },
 
   randomSwipe() {
     const { cubes } = this.data;
-    let first = Math.round(Math.random() * 24);
-    let second = Math.round(Math.random() * 24);
+    let first = this.randomCubeIndex();
+    let second = this.randomCubeIndex();
+
     while(first === second) {
-      second = Math.round(Math.random() * 24);
+      second = this.randomCubeIndex();
     }
-    // let second = first + 1;
-    // if (first % 5 === 4) {
-    //   second = first - 1;
-    // }
 
     this.swipeTwoCubes(cubes, first, second);
     this.setData({
@@ -196,6 +247,8 @@ Page({
   },
 
   onLoad: function (options) {
+    global.gameOver = this.gameOver.bind(this);
+    global.onLoad = this.onLoad.bind(this);
     this.gameInit();
     this.gameStart();
   },
