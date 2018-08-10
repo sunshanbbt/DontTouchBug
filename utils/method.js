@@ -73,8 +73,10 @@ function saveUserScore(score, time, difficut){
     }
   });
 }
-
-function saveBuriedPoint(key, data) {
+/**
+ * 埋点
+ */
+function saveBuriedPoint(key, data, sub) {
   getCheckSession();
   wx.request({
     url: config.saveBuriedPointUrl,
@@ -83,6 +85,7 @@ function saveBuriedPoint(key, data) {
       key: key,
       data: data,
       timestamp: new Date().getTime(),
+      sub: sub,
       rdSessionKey: wx.getStorageSync('rdSessionKey')
     },
     header: {
