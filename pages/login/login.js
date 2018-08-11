@@ -61,8 +61,12 @@ Page({
   },
   handleSelectTouchMove: function (e) {
     var y = e.touches[0].pageY - this.data.touchStart.pageY;
-    var active = this.data.active;
-    active = this.data.startActive - parseInt(y / this.selectHeight);
+    // var active = this.data.active;
+    // active = this.data.startActive - parseInt(y / this.selectHeight);
+    var active = this.data.startActive;
+    if (Math.abs(y) > this.selectHeight / 2) {
+      active = this.data.startActive - (y > 0 ? 1 : -1);
+    }
     
     if (active >= this.data.levels.length){
       active = this.data.levels.length - 1;
@@ -85,7 +89,7 @@ Page({
     var rect = query.select(".m-option").boundingClientRect();
     rect.exec((res) => {
       this.selectHeight = res[0].height;
-      let active = parseInt(wx.getStorageSync('level'), 10);
+      let active = parseInt(wx.getStorageSync('level') || 0, 10);
       this.setData({
         active,
         offsetY: -1 * active * this.selectHeight,
