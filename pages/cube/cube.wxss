@@ -5,29 +5,11 @@
   height: 100%;
   display: flex;
   background-color: #db9e36;
-  background-image: -moz-radial-gradient(#FFFFFF44 30%, transparent 0),
-                    -moz-radial-gradient(#FFFFFF44 30%, transparent 0);
-  background-image: -webkit-radial-gradient(#FFFFFF44 30%, transparent 0),
-                    -webkit-radial-gradient(#FFFFFF44 30%, transparent 0);
-  background-image: radial-gradient(#FFFFFF44 30%, transparent 0),
-                    radial-gradient(#FFFFFF44 30%, transparent 0);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 30%, transparent 0),
+                    radial-gradient(rgba(255, 255, 255, 0.3) 30%, transparent 0);
   background-position: 0 0, 10px 10px;
   background-size: 20px 20px;
   padding: 0;
-}
-.page::after {
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: -1;
-  -webkit-filter: blur(20px);
-  -moz-filter: blur(20px);
-  -ms-filter: blur(20px);
-  -o-filter: blur(20px);
-  filter: blur(20px);
 }
 .header {
   width: 100vw;
@@ -38,11 +20,11 @@
   position: absolute;
   display: flex;
   justify-content: space-between;
-  border: 2px solid #a6f33377;
+  border: 2px solid rgba(166, 243, 51, 0.5);
   border-top: none;
   border-radius: 0 0 10px 10px;
   color: #FFF;
-  background: #a6f33344;
+  background: rgba(166, 243, 51, 0.3);
 }
 .header .stepCount,
 .header .timer {
@@ -52,7 +34,6 @@
   text-shadow: 0 1px #093f65, 1px 0 #093f65, -1px 0 #093f65, 0 -1px #093f65;
   margin-right: 4px;
   font-weight: bolder;
-  /* -webkit-text-stroke: 1px #093f65; */
   letter-spacing: 2pt;
   flex-shrink: 0;
 }
@@ -62,7 +43,7 @@
   height: 8vw;
   display: inline-block;
   padding: 0 10px;
-  background: #a6f33399;
+  background: rgba(166, 243, 51, 0.5);
   border-radius: 8px;
 }
 .header .timer {
@@ -97,7 +78,6 @@
 .startAni .num {
   font-size: 0;
   transition: all 300ms;
-  /* display: none; */
 }
 .startAni.step_0 .num_0,
 .startAni.step_1 .num_1,

@@ -1,7 +1,0 @@
-<!--pages/gaming/gaming.wxml-->
-<view class="container">
-  <view style="{{lifeStyle}}" class="life"></view>
-  <view bindtouchstart="handleTouchStart" class="codePane">
-    <code content="{{activeCode}}" />
-  </view>
-</view>

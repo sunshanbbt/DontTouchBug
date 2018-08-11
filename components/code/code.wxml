@@ -1,7 +1,0 @@
-<!--components/code/code.wxml-->
-<view bindtap="handleTouch" class="m-code">
-  <view wx:for="{{lines}}" class="line">
-    <text class="num">{{index + 1}}</text>
-    <text class="code">{{item}}</text>
-  </view>
-</view>

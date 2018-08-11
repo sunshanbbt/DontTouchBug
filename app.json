@@ -3,8 +3,6 @@
     "pages/login/login",
     "pages/cube/cube",
     "pages/score/score",
-    "pages/index/index",
-    "pages/gaming/gaming",
     "pages/ranking/ranking"
   ],
   "window": {
