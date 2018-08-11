@@ -12,7 +12,6 @@
   </view>
   <view
     class="cubeContainer {{stop ? 'stopped' : ''}}"
-    bindtap="onTouchContainer"  
   >
     <view
       class="cubeBox"
@@ -37,5 +36,13 @@
     <text class="num num_1">1</text>
     <text class="num num_0">START</text>
   </view>
-  <score-modal wx:if="{{stop}}"></score-modal>
+  <score-modal
+    wx:if="{{stop}}"
+    level="{{level}}"
+    minite="{{minite}}"
+    second="{{second}}"
+    steps="{{steps}}"
+    bindrestart="restartGame"
+    bindback="backToIndex"
+  ></score-modal>
 </view>

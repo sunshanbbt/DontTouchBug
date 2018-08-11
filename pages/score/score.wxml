@@ -1,6 +1,9 @@
 <!--pages/score/score.wxml-->
 <view class="page">
-  <view class="panel">
+  <view
+    class="panel"
+    bindtouchstart="handleTouchStart"
+  >
     <view class="level">
       <text class="value">{{level}}模式</text>
     </view>

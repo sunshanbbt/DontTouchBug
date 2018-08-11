@@ -26,20 +26,20 @@ Component({
    */
   methods: {
     restart() {
-
+      this.triggerEvent('restart', {});
     },
-    backToIndex() {
-
+    back() {
+      this.triggerEvent('back', {});
     },
   },
 
   ready() {
-    console.log('score ready');
-    const strTime = `${this.minite}:${formatNumber(this.second)}`
+    console.log('score ready: ', this);
+    const { level = 0, minite = 0, second = 0, steps = 0 } = this.data;
+    const strTime = `${minite}:${formatNumber(second)}`
     this.setData({
-      level_label: LEVEL_LABEL[this.level || 0],
-      score: calcScore(this.minite, this.second, this.steps, this.level),
-      steps: this.steps,
+      level_label: LEVEL_LABEL[level],
+      score: calcScore(minite, second, steps, level),
       strTime,
     });
   },
