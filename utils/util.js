@@ -16,13 +16,22 @@ const formatNumber = (n = 0) => {
 // 休闲、挑战、自虐
 const LEVEL_BASE = [200, 400, 700, 1000];
 
+function getStepRadio(steps) {
+  if (steps < 50) {
+    return 2;
+  } else if (steps < 100) {
+    return 1.5;
+  }
+  return 1;
+}
+
 const calcScore = (minite, second, steps, level) => {
   try {
     // 等级基数 / 每步耗时
     const cost = 60 * minite + second;
     const costPerStep = cost / steps;
     // 0.2s以内分数不再提高（能达到0.2秒一步的，应该没多少人吧）
-    return Math.round(LEVEL_BASE[level] / Math.max(costPerStep, 0.2)) || 0;
+    return Math.round(getStepRadio(steps) * LEVEL_BASE[level] / Math.max(costPerStep, 0.2)) || 0;
   } catch (e) {
     return 0;
   }

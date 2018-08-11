@@ -23,5 +23,5 @@
 .btn {
   width: 100%;
   border: none;
-  margin: 8pt;
+  margin: 8pt 0;
 }

@@ -4,7 +4,6 @@ const method = require('../../utils/method.js');
 var app = getApp();
 Page({
   data: {
-    loadingHidden: false,
     levels:['休闲','娱乐', '挑战','自虐'],
     active:0,
     height:0
@@ -47,46 +46,50 @@ Page({
       console.log('授权失败')
     }
   },
+  
+  gotoRanking: function () {
+    wx.navigateTo({
+      url: '/pages/ranking/ranking',
+    });
+  },
+
   handleSelectTouchStart: function (e) {
-    console.log('touch start: ', e.touches[0]);
     this.setData({
       touchStart : e.touches[0],
       startActive : this.data.active
     })
   },
   handleSelectTouchMove: function (e) {
-    console.log('touch move: ', e.touches[0].pageX + "--" + this.data.touchStart.pageY);
     var y = e.touches[0].pageY - this.data.touchStart.pageY;
     var active = this.data.active;
-    console.log(y);
-    active = this.data.startActive - parseInt(y / 20);
+    active = this.data.startActive - parseInt(y / this.selectHeight);
     
-    if (active > this.data.levels.length){
-      active = this.data.levels.length-1;
+    if (active >= this.data.levels.length){
+      active = this.data.levels.length - 1;
     }
+
     if (active < 0 ) {
       active = 0;
     }
-    console.log(this.selectHeight)
+    
     this.setData({
-      offsetY: active*this.selectHeight,
+      offsetY: -1 * active * this.selectHeight,
       active: active
     })
-    console.log('active' + active)
-
-    
-    
   },
   handleSelectTouchEnd: function (e) {
-    this.setData({
-      offsetY: 0
-    })
+    wx.setStorageSync('level', this.data.active);
   },
   onReady: function () {
     var query = wx.createSelectorQuery();
-    var rect = query.select("#m-text-id").boundingClientRect();
+    var rect = query.select(".m-option").boundingClientRect();
     rect.exec((res) => {
       this.selectHeight = res[0].height;
+      let active = parseInt(wx.getStorageSync('level'), 10);
+      this.setData({
+        active,
+        offsetY: -1 * active * this.selectHeight,
+      });
     });
   }
 
