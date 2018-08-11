@@ -1,6 +1,8 @@
 // 引入配置文件config.js
 const config = require('../../utils/config.js');
 const method = require('../../utils/method.js');
+import * as BuriedPoint from '../../utils/buriedPoint.js';
+
 var app = getApp();
 Page({
   data: {
@@ -9,8 +11,6 @@ Page({
     height:0
   },
   bindGetUserInfo: function (e) {
-    console.log('用户按了开始游戏按钮');
-    console.log('用户昵称' + e.detail.userInfo.nickName);
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
@@ -40,7 +40,7 @@ Page({
       });
       //授权成功后，跳转进入小程序游戏界面
       wx.navigateTo({
-        url: '/pages/cube/cube'
+        url: '/pages/cube/cube',
       });
     } else {
       console.log('授权失败')
@@ -48,6 +48,7 @@ Page({
   },
   
   gotoRanking: function () {
+    BuriedPoint.onGotoRank();
     wx.navigateTo({
       url: '/pages/ranking/ranking',
     });
@@ -59,6 +60,7 @@ Page({
       startActive : this.data.active
     })
   },
+
   handleSelectTouchMove: function (e) {
     var y = e.touches[0].pageY - this.data.touchStart.pageY;
     // var active = this.data.active;
@@ -81,9 +83,14 @@ Page({
       active: active
     })
   },
+
   handleSelectTouchEnd: function (e) {
+    if (this.data.active !== this.data.startActive) {
+      BuriedPoint.onSwitchLevel(this.data.startActive, this.data.active);
+    }
     wx.setStorageSync('level', this.data.active);
   },
+
   onReady: function () {
     var query = wx.createSelectorQuery();
     var rect = query.select(".m-option").boundingClientRect();
@@ -95,6 +102,16 @@ Page({
         offsetY: -1 * active * this.selectHeight,
       });
     });
-  }
+  },
 
+  onShareAppMessage: function () {
+    let shareBase = new Date().getTime().toString(32);
+    let uuid = parseInt(Math.random() * 10000, 10).toString(32);
+    let shareCode = `${shareBase}${shareBase}`
+    BuriedPoint.onShare('login', shareCode);
+    return {
+      title: '这个游戏还真是有点难',
+      path: `/pages/login/login?shareCode=${shareCode}`,
+    };
+  },
 })

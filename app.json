@@ -2,7 +2,6 @@
   "pages": [
     "pages/login/login",
     "pages/cube/cube",
-    "pages/score/score",
     "pages/ranking/ranking"
   ],
   "window": {

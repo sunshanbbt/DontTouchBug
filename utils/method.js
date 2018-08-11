@@ -5,12 +5,15 @@ const config = require('config.js');
  * 校验session
  */
 function getCheckSession() {
+  let rdSessionKey = wx.setStorageSync('rdSessionKey');
+  if (!rdSessionKey) { // 本地没有rdSessionKey的时候也要重新去拿
+    return getLogin();
+  }
   wx.checkSession({
     success: function () {
       return true;
     },
     fail: function () {
-      console.log('session已过期，正在重新获取..');
       //code获取成功，保存为当前页面的全局变量code
       getLogin();
     }
@@ -25,14 +28,11 @@ function getLogin() {
   wx.login({
     success: res => {
       if (res.code) {
-        console.log('当前用户登录凭证：' + res.code);
         wx.request({
           url: config.queryOpenIdUrl,
           data: { code: res.code },
           success: function (res) {
             wx.setStorageSync('rdSessionKey', res.data.rdSessionKey);
-            console.log("当前用户服务端返回的rdSessionKey:" + res.data.rdSessionKey);
-
           }
         })
       } else {
@@ -49,12 +49,13 @@ function getLogin() {
 /**
  * 用户分数存储
  */
-function saveUserScore(score, time, difficut){
+function saveUserScore(score, steps, time, difficut){
   getCheckSession();
   wx.request({
     url: config.saveUserScoreUrl,
     data: {
       score: score,
+      steps,
       time: time,
       difficut: difficut,
       rdSessionKey: wx.getStorageSync('rdSessionKey')
@@ -76,16 +77,15 @@ function saveUserScore(score, time, difficut){
 /**
  * 埋点
  */
-function saveBuriedPoint(key, data, sub) {
-  getCheckSession();
+function saveBuriedPoint(key, sub, data) {
   wx.request({
     url: config.saveBuriedPointUrl,
     data: {
       appId:'bug',
       key: key,
-      data: data,
-      timestamp: new Date().getTime(),
       sub: sub,
+      data: JSON.stringify(data),
+      timestamp: new Date().getTime(),
       rdSessionKey: wx.getStorageSync('rdSessionKey')
     },
     header: {
@@ -100,7 +100,6 @@ function saveBuriedPoint(key, data, sub) {
         console.log("插入埋点失败");
         return false;
       }
-
     }
   });
 }

@@ -1,5 +1,6 @@
 // pages/cube/cube.js
 import { formatNumber } from '../../utils/util.js';
+import * as BuriedPoint from '../../utils/buriedPoint.js';
 
 const LEVEL_CONFIG_MAP = [ // 总大小，bug数，方块偏移，每次点击交换，出错时交换
   [4, 6, 20, false, false],  // 休闲
@@ -79,6 +80,7 @@ Page({
 
   gameStart() {
     this.startAni(() => {
+      BuriedPoint.onGameStart(this.data.level);
       this.setData({
         start: false,
         pause: false,
@@ -91,10 +93,10 @@ Page({
     this.setData({
       stop: true,
     });
-    wx.setStorageSync('lastLevel', this.data.level);
-    wx.setStorageSync('lastSteps', this.data.steps);
-    wx.setStorageSync('lastMinite', this.data.minite);
-    wx.setStorageSync('lastSecond', this.data.second);
+    // wx.setStorageSync('lastLevel', this.data.level);
+    // wx.setStorageSync('lastSteps', this.data.steps);
+    // wx.setStorageSync('lastMinite', this.data.minite);
+    // wx.setStorageSync('lastSecond', this.data.second);
     clearInterval(this.timerInter);
   },
 
@@ -266,6 +268,16 @@ Page({
     });
   },
 
+  collectGameEnv() {
+    const {
+      minite, second, steps, level, pause, start, left,
+    } = this.data;
+
+    return {
+      minite, second, steps, level, pause, start, left,
+    }
+  },
+
   onLoad: function (options) {
     global.gameOver = this.gameOver.bind(this);
     this.gameInit();
@@ -283,12 +295,17 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    // 页面隐藏而游戏没结束
+    console.log('onHide', this.data);
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    if (!this.stop) {
+      BuriedPoint.onGameBreak(this.collectGameEnv());
+    }
     clearInterval(this.timerInter);
   },
 
@@ -310,6 +327,13 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    let shareBase = new Date().getTime().toString(32);
+    let uuid = parseInt(Math.random() * 10000, 10).toString(32);
+    let shareCode = `${shareBase}${shareBase}`
+    BuriedPoint.onShare('login', shareCode, this.collectGameEnv());
+    return {
+      title: '这个游戏还真是有点难',
+      path: `/pages/login/login?shareCode=${shareCode}`,
+    };
   }
 })

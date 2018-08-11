@@ -60,7 +60,7 @@
 }
 
 .rank {
-  color: rgb(114, 181, 240);
+  color: #179B16;
   text-align: center;
   font-size: 14px;
 }

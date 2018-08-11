@@ -12,6 +12,7 @@
     >
       <text
         wx:for="{{levels}}"
+        wx:key="{{index}}"
         class="m-option line {{index === active ? 'active' : ''}}"
       >{{item}}</text>
     </view>
