@@ -36,9 +36,9 @@ Page({
         });
       } else {
         clearInterval(gameOverInter);
-        wx.navigateTo({
-          url: '../score/score',
-        });
+        // wx.navigateTo({
+        //   url: '../score/score',
+        // });
       }
     }, 30);
   },
@@ -65,6 +65,7 @@ Page({
       level,
       cubeSize: cubeOffset - 1,
       startAni: 3,
+      steps: 0,
       time: '0:00',
       minite: 0,
       second: 0,
@@ -136,10 +137,12 @@ Page({
     return list.filter(cube => !cube.bug && !cube.active).length;
   },
 
-  clearCubeState() {
+  clearCubeState(waitClearCube) {
     const { cubes, steps } = this.data;
-    const list = cubes.map(cube => {
-      cube.active = false;
+    const list = cubes.map((cube, index) => {
+      if (waitClearCube[index]) { // 只清理之前的
+        cube.active = false;
+      }
       return cube;
     });
 
@@ -154,6 +157,11 @@ Page({
       return;
     }
     const { index, active, bug } = ev.detail;
+    const { cubes, steps } = this.data;
+
+    if (cubes[index].active) { // 翻开的块不再响应点击
+      return;
+    }
     let pause = false;
     if (this.swipeInTouch) { // 每次点击都进行交换
       this.randomSwipe();
@@ -161,21 +169,22 @@ Page({
       this.randomSwipe();
     }
 
-    if (bug) {
-      setTimeout(() => {
-        this.clearCubeState();
-        // this.setData({
-        //   pause: false,
-        // });
-      }, 1000);
-    }
-
-    const { cubes, steps } = this.data;
     cubes[index].active = active;
     const left = this.countLeft(cubes);
     if (left === 0) {
       this.gameOver();
     }
+
+    if (bug) {
+      // 先将需要清理的方块找好，1s后再清理
+      let waitClearCube = cubes.map(cube => {
+        return cube.active;
+      });
+      this.clearTimeout = setTimeout(() => {
+        this.clearCubeState(waitClearCube);
+      }, 1000);
+    }
+
     this.setData({
       pause,
       cubes,
@@ -246,9 +255,19 @@ Page({
     return list.map((cube, index) => this.updateCubeOffset(cube, index));
   },
 
+  restartGame: function () {
+    this.gameInit();
+    this.gameStart();
+  },
+
+  backToIndex: function () {
+    wx.navigateTo({
+      url: '../login/login',
+    });
+  },
+
   onLoad: function (options) {
     global.gameOver = this.gameOver.bind(this);
-    global.onLoad = this.onLoad.bind(this);
     this.gameInit();
     this.gameStart();
   },

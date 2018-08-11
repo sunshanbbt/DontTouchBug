@@ -14,7 +14,7 @@ const formatNumber = (n = 0) => {
   return n[1] ? n : '0' + n
 }
 // 休闲、挑战、自虐
-const LEVEL_BASE = [200, 400, 800];
+const LEVEL_BASE = [200, 400, 700, 1000];
 
 const calcScore = (minite, second, steps, level) => {
   try {

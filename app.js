@@ -3,7 +3,10 @@ const config = require('/utils/config.js');
 const method = require('/utils/method.js');
 //app.js
 App({
-  onShow:function(){
+  onError: function(e) {
+    console.debug('error occur: ', e);
+  },
+  onShow: function(){
     console.log('生命周期函数，监听页面显示');
     method.saveUserScore('123','12','1')
     wx.getSetting({

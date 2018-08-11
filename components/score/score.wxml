@@ -1,9 +1,27 @@
 <!--components/score/score.wxml-->
 <view class="m-score">
   <view class="scoreBox">
-    <view class="info">
-      <text class="level">{{level_label}}</text>
-      <text>{{score}}</text>
+    <view class="inner">
+      <view class="info">
+        <view class="line level">
+          <text class="">{{level_label}}</text>
+        </view>
+        <view class="line score">
+          <text class="">{{score}}</text>
+        </view>
+        <view class="line time">
+          <text class="label">用时：</text>
+          <text class="value">{{strTime}}</text>
+        </view>
+        <view class="line steps">
+          <text class="label">步数：</text>
+          <text class="value">{{steps}}</text>
+        </view>
+      </view>
+      <view class="control">
+        <button bindtap="restart" class="btn primary">再来一局</button>
+        <button bindtap="back" class="btn ghost">返回首页</button>
+      </view>
     </view>
   </view>
 </view>
