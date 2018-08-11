@@ -4,7 +4,10 @@ const method = require('../../utils/method.js');
 var app = getApp();
 Page({
   data: {
-    loadingHidden: false
+    loadingHidden: false,
+    levels:['休闲','娱乐', '挑战','自虐'],
+    active:0,
+    height:0
   },
   bindGetUserInfo: function (e) {
     console.log('用户按了开始游戏按钮');
@@ -43,7 +46,48 @@ Page({
     } else {
       console.log('授权失败')
     }
-  }
+  },
+  handleSelectTouchStart: function (e) {
+    console.log('touch start: ', e.touches[0]);
+    this.setData({
+      touchStart : e.touches[0],
+      startActive : this.data.active
+    })
+  },
+  handleSelectTouchMove: function (e) {
+    console.log('touch move: ', e.touches[0].pageX + "--" + this.data.touchStart.pageY);
+    var y = e.touches[0].pageY - this.data.touchStart.pageY;
+    var active = this.data.active;
+    console.log(y);
+    active = this.data.startActive - parseInt(y / 20);
+    
+    if (active > this.data.levels.length){
+      active = this.data.levels.length-1;
+    }
+    if (active < 0 ) {
+      active = 0;
+    }
+    console.log(this.selectHeight)
+    this.setData({
+      offsetY: active*this.selectHeight,
+      active: active
+    })
+    console.log('active' + active)
 
+    
+    
+  },
+  handleSelectTouchEnd: function (e) {
+    this.setData({
+      offsetY: 0
+    })
+  },
+  onReady: function () {
+    var query = wx.createSelectorQuery();
+    var rect = query.select("#m-text-id").boundingClientRect();
+    rect.exec((res) => {
+      this.selectHeight = res[0].height;
+    });
+  }
 
 })
