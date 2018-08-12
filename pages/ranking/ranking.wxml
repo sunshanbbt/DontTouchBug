@@ -1,20 +1,20 @@
 <!--pages/ranking/ranking.wxml-->
 <view class="ranking">
   <view class="winners">
-    <view wx:for="{{topThree}}" class="winner">
+    <view wx:for="{{topThree}}" wx:key="rank" class="winner">
       <view class="avatar-box">
-        <image class="avatar" src="{{item.head}}"></image>
+        <image class="avatar" src="{{item.avatarUrl}}"></image>
       </view>
       <text class="index">{{item.rank}}</text>
-      <text class="name">{{item.name}}</text>
+      <text class="name">{{item.nickName}}</text>
       <text class="winner-score">{{item.score}}</text>
     </view>
   </view>
   <view wx:if="{{userRank.rank > 3}}" class="score mine">
     <text class="index"></text>
-    <image class="avatar" src="{{userRank.head}}"></image>
+    <image class="avatar" src="{{userRank.avatarUrl}}"></image>
     <view class="info">
-      <text class="name">{{userRank.name}}</text>
+      <text class="name">{{userRank.nickName}}</text>
       <text class="rank">第{{userRank.rank}}名</text>
     </view>
     <view class="score">
@@ -22,11 +22,11 @@
     </view>
   </view>
   <view class="list">
-    <view wx:for="{{rankList}}" class="score">
+    <view wx:for="{{rankList}}" wx:key="rank" class="score">
       <text class="index">{{item.rank}}</text>
-      <image class="avatar" src="{{item.head}}"></image>
+      <image class="avatar" src="{{item.avatarUrl}}"></image>
       <view class="info">
-        <text class="name">{{item.name}}</text>
+        <text class="name">{{item.nickName}}</text>
       </view>
       <view class="score">
         <text>{{item.score}}</text>

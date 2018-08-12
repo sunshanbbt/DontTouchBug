@@ -1,21 +1,22 @@
 
 const config = require('config.js');
 
+let rdSessionKey = wx.getStorageSync('rdSessionKey');
+
 /**
  * 校验session
  */
-function getCheckSession() {
-  let rdSessionKey = wx.setStorageSync('rdSessionKey');
+function getCheckSession(callback) {
   if (!rdSessionKey) { // 本地没有rdSessionKey的时候也要重新去拿
-    return getLogin();
+    return getLogin(callback);
   }
   wx.checkSession({
     success: function () {
-      return true;
+      callback && callback();
     },
     fail: function () {
       //code获取成功，保存为当前页面的全局变量code
-      getLogin();
+      getLogin(callback);
     }
   })
 }
@@ -23,7 +24,7 @@ function getCheckSession() {
 /**
  * 登录
  */
-function getLogin() {
+function getLogin(callback) {
   //code获取成功，保存为当前页面的全局变量code
   wx.login({
     success: res => {
@@ -33,8 +34,10 @@ function getLogin() {
           data: { code: res.code },
           success: function (res) {
             wx.setStorageSync('rdSessionKey', res.data.rdSessionKey);
+            rdSessionKey = res.data.rdSessionKey;
+            callback && callback();
           }
-        })
+        });
       } else {
         console.log('获取用户登录态失败！' + res.errMsg)
       }
@@ -50,28 +53,29 @@ function getLogin() {
  * 用户分数存储
  */
 function saveUserScore(score, steps, time, difficut){
-  getCheckSession();
-  wx.request({
-    url: config.saveUserScoreUrl,
-    data: {
-      score: score,
-      steps,
-      time: time,
-      difficut: difficut,
-      rdSessionKey: wx.getStorageSync('rdSessionKey')
-    },
-    header: {
-      'content-type': 'application/json'
-    },
-    success: function (res) {
-      if (res.data.code == 200) {
-        console.log("插入小程序用户分值信息成功！");
-        return true;
-      } else {
-        console.log("插入小程序用户分值信息失败！");
-        return false;
+  getCheckSession(() => {
+    wx.request({
+      url: config.saveUserScoreUrl,
+      data: {
+        score: score,
+        steps,
+        time: time,
+        difficut: difficut,
+        rdSessionKey,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          console.debug("插入小程序用户分值信息成功！");
+          return true;
+        } else {
+          console.debug("插入小程序用户分值信息失败！");
+          return false;
+        }
       }
-    }
+    });
   });
 }
 /**
@@ -86,7 +90,7 @@ function saveBuriedPoint(key, sub, data) {
       sub: sub,
       data: JSON.stringify(data),
       timestamp: new Date().getTime(),
-      rdSessionKey: wx.getStorageSync('rdSessionKey')
+      rdSessionKey,
     },
     header: {
       'content-type': 'application/x-www-form-urlencoded'
@@ -94,18 +98,40 @@ function saveBuriedPoint(key, sub, data) {
     method:'POST',
     success: function (res) {
       if ( res.data.code == 200 ) {
-        console.log("插入埋点成功");
+        console.debug("插入埋点成功");
         return true;
       } else {
-        console.log("插入埋点失败");
+        console.debug("插入埋点失败");
         return false;
       }
     }
   });
 }
-module.exports = {
-  getCheckSession: getCheckSession,
-  saveUserScore: saveUserScore,
-  saveBuriedPoint: saveBuriedPoint
 
+/**
+ * 读取排行榜数据
+ */
+function getRankData(cb) {
+  getCheckSession(() => {
+    wx.request({
+      url: config.getRankListUrl,
+      data: {
+        rdSessionKey,
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          cb(res.data.data);
+        } else {
+          return false;
+        }
+      }
+    });
+  })
 }
+
+module.exports = {
+  getCheckSession,
+  saveUserScore,
+  saveBuriedPoint,
+  getRankData,
+};

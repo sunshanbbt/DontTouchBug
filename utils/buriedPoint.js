@@ -43,5 +43,7 @@ export function onCloseApp() {
 }
 
 export function onError(e) {
-  return saveBuriedPoint(BURIED_KEY.ERROR, ERROR_SUB.GLOBAL, e);
+  return saveBuriedPoint(BURIED_KEY.ERROR, ERROR_SUB.GLOBAL, {
+    error: e,
+  });
 }

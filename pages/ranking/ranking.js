@@ -1,4 +1,6 @@
 // pages/ranking/ranking.js
+import method from '../../utils/method.js';
+
 Page({
 
   /**
@@ -87,6 +89,29 @@ Page({
     ],
   },
 
+  convertToData(list) {
+    const [first, second, third, ...other] = list;
+    return {
+      rankList: other,
+      topThree: [second, first, third],
+    };
+  },
+
+  getRankList(list) {
+    return 
+  },
+
+  updateListData(list) {
+    let arr = [];
+    for (let key in list) {
+      let data = JSON.parse(list[key]);
+      data.rank = key;
+      arr.push(data);
+    }
+
+    this.setData(this.convertToData(arr));
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -105,7 +130,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    method.getRankData((list) => {
+      this.updateListData(list);
+    });
   },
 
   /**

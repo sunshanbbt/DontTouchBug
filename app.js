@@ -8,7 +8,7 @@ App({
     BuriedPoint.onError(e);
   },
   onShow: function (option) {
-    BuriedPoint.onOpenApp(option.query);
+    BuriedPoint.onOpenApp(option);
     wx.getSetting({
       success: function(res) {
         if (res.authSetting['scope.userInfo']) {

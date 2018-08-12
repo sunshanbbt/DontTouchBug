@@ -14,7 +14,7 @@ const formatNumber = (n = 0) => {
   return n[1] ? n : '0' + n
 }
 // 休闲、挑战、自虐
-const LEVEL_BASE = [200, 400, 700, 1000];
+const LEVEL_BASE = [50, 300, 600, 1000];
 
 function getStepRadio(steps) {
   if (steps < 50) {
