@@ -129,9 +129,38 @@ function getRankData(cb) {
   })
 }
 
+/**
+ * 保存用户资料
+ */
+function saveUserInfo(e) {
+  getCheckSession(() => {
+    wx.request({
+      url: config.saveUserUrl,
+      data: {
+        nickName: e.userInfo.nickName,
+        avatarUrl: e.userInfo.avatarUrl,
+        province: e.userInfo.province,
+        city: e.userInfo.city,
+        province: e.userInfo.province,
+        gender: e.userInfo.gender,
+        country: e.userInfo.country,
+        language: e.userInfo.language,
+        rdSessionKey,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.debug("插入小程序登录用户信息成功！");
+      }
+    });
+  });
+}
+
 module.exports = {
   getCheckSession,
   saveUserScore,
   saveBuriedPoint,
   getRankData,
+  saveUserInfo,
 };

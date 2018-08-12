@@ -10,41 +10,10 @@ Page({
     active:0,
     height:0
   },
-  bindGetUserInfo: function (e) {
-    if (e.detail.userInfo) {
-      //用户按了允许授权按钮
-      var that = this;
-      //插入登录的用户的相关信息到数据库
-      wx.request({
-        url: config.saveUserUrl,
-        data: {
-          nickName: e.detail.userInfo.nickName,
-          avatarUrl: e.detail.userInfo.avatarUrl,
-          province: e.detail.userInfo.province,
-          city: e.detail.userInfo.city,
-          province: e.detail.userInfo.province,
-          gender: e.detail.userInfo.gender,
-          country: e.detail.userInfo.country,
-          language: e.detail.userInfo.language,
-          rdSessionKey: wx.getStorageSync('rdSessionKey')
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          //从数据库获取用户信息
-          // that.queryUsreInfo();
-          console.log("插入小程序登录用户信息成功！");
-          
-        }
-      });
-      //授权成功后，跳转进入小程序游戏界面
-      wx.navigateTo({
-        url: '/pages/cube/cube',
-      });
-    } else {
-      console.log('授权失败')
-    }
+  startGame: function (e) {
+    wx.navigateTo({
+      url: '/pages/cube/cube',
+    });
   },
   
   gotoRanking: function () {

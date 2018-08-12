@@ -13,11 +13,9 @@ App({
       success: function(res) {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
-            success: function(res) {
+            success: function(e) {
               //用户已经授权过
-              console.log('用户已经授权');
-              //校验session是否过期
-              method.getCheckSession();
+              method.saveUserInfo(e);
             }
           });
         }

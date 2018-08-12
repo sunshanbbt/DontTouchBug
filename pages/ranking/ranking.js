@@ -7,86 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userRank: {
-      name: 'Mr Tian',
-      rank: 24,
-      score: '300',
-      head: '../../res/images/girl.jpg',
-    },
-    topThree: [
-      {
-        name: 'Mr Zhao',
-        rank: 2,
-        score: '501',
-        head: '../../res/images/girl.jpg',
-
-      },
-      {
-        name: 'Mr Qian',
-        rank: 1,
-        score: '502',
-        head: '../../res/images/girl.jpg',
-
-      },
-      {
-        name: 'Mr Sun',
-        rank: 3,
-        score: '500',
-        head: '../../res/images/girl.jpg',
-
-      }
-    ],
-    rankList: [
-      {
-        name: 'Mr Wang',
-        rank: 4,
-        score: '430',
-        head: '../../res/images/girl.jpg',
-
-      },
-      {
-        name: 'Mr Sun',
-        rank: 5,
-        score: '421',
-        head: '../../res/images/girl.jpg',
-      },
-      {
-        name: 'Mr Li',
-        rank: 6,
-        score: '420',
-        head: '../../res/images/girl.jpg',
-      },
-      {
-        name: 'Mr Li',
-        rank: 7,
-        score: '420',
-        head: '../../res/images/girl.jpg',
-      },
-      {
-        name: 'Mr Li',
-        rank: 8,
-        score: '420',
-        head: '../../res/images/girl.jpg',
-      },
-      {
-        name: 'Mr Li',
-        rank: 9,
-        score: '420',
-        head: '../../res/images/girl.jpg',
-      },
-      {
-        name: 'Mr Li',
-        rank: 10,
-        score: '420',
-        head: '../../res/images/girl.jpg',
-      },
-      {
-        name: 'Mr Li',
-        rank: 11,
-        score: '420',
-        head: '../../res/images/girl.jpg',
-      }
-    ],
+    userRank: {},
+    topThree: [],
+    rankList: [],
   },
 
   convertToData(list) {
@@ -97,19 +20,17 @@ Page({
     };
   },
 
-  getRankList(list) {
-    return 
-  },
-
-  updateListData(list) {
+  updateListData({scoreList, myscore}) {
     let arr = [];
-    for (let key in list) {
-      let data = JSON.parse(list[key]);
+    for (let key in scoreList) {
+      let data = JSON.parse(scoreList[key]);
       data.rank = key;
       arr.push(data);
     }
 
-    this.setData(this.convertToData(arr));
+    this.setData(Object.assign({
+      userRank: myscore,
+    }, this.convertToData(arr)));
   },
 
   /**
@@ -130,8 +51,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    method.getRankData((list) => {
-      this.updateListData(list);
+    method.getRankData((data) => {
+      this.updateListData(data);
     });
   },
 
