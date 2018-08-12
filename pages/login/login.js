@@ -4,6 +4,7 @@ const method = require('../../utils/method.js');
 import { getShareMessage } from '../../utils/util.js';
 import * as BuriedPoint from '../../utils/buriedPoint.js';
 
+let rdSessionKey = wx.getStorageSync('rdSessionKey');
 var app = getApp();
 Page({
   data: {
@@ -11,17 +12,41 @@ Page({
     active:0,
     height:0
   },
-  startGame: function (e) {
-    wx.navigateTo({
-      url: '/pages/cube/cube',
+  bindGetUserInfo: function (e) {
+    method.getCheckSession(() => {
+      wx.request({
+        url: config.saveUserUrl,
+        data: {
+          nickName: e.detail.userInfo.nickName,
+          avatarUrl: e.detail.userInfo.avatarUrl,
+          province: e.detail.userInfo.province,
+          city: e.detail.userInfo.city,
+          province: e.detail.userInfo.province,
+          gender: e.detail.userInfo.gender,
+          country: e.detail.userInfo.country,
+          language: e.detail.userInfo.language,
+          rdSessionKey,
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          console.info("插入小程序登录用户信息成功！" + rdSessionKey);
+          wx.navigateTo({
+            url: '/pages/cube/cube',
+          });
+        }
+      });
     });
+    
   },
   
   gotoRanking: function () {
-    BuriedPoint.onGotoRank();
-    wx.navigateTo({
-      url: '/pages/ranking/ranking',
-    });
+   
+      BuriedPoint.onGotoRank();
+      wx.navigateTo({
+        url: '/pages/ranking/ranking',
+      });
   },
 
   handleSelectTouchStart: function (e) {
@@ -84,4 +109,5 @@ Page({
       path: `/pages/login/login?shareCode=${shareCode}`,
     };
   },
+ 
 })

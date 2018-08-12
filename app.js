@@ -12,12 +12,13 @@ App({
     wx.getSetting({
       success: function(res) {
         if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            success: function(e) {
-              //用户已经授权过
-              method.saveUserInfo(e);
-            }
-          });
+          //用户已经授权过
+          console.log("用户授权过，重新获取session");
+          method.getLogin();
+          
+        } else {
+          console.log("用户未授权过，重新获取session");
+          method.getLogin();
         }
       }
     })

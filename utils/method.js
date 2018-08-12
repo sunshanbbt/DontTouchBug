@@ -7,6 +7,7 @@ let rdSessionKey = wx.getStorageSync('rdSessionKey');
  * 校验session
  */
 function getCheckSession(callback) {
+  console.log("session")
   if (!rdSessionKey) { // 本地没有rdSessionKey的时候也要重新去拿
     return getLogin(callback);
   }
@@ -35,6 +36,7 @@ function getLogin(callback) {
           success: function (res) {
             wx.setStorageSync('rdSessionKey', res.data.rdSessionKey);
             rdSessionKey = res.data.rdSessionKey;
+            console.log(rdSessionKey)
             callback && callback();
           }
         });
@@ -153,7 +155,7 @@ function saveUserInfo(e) {
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.debug("插入小程序登录用户信息成功！");
+        console.info("插入小程序登录用户信息成功！" + rdSessionKey);
       }
     });
   });
@@ -165,4 +167,5 @@ module.exports = {
   saveBuriedPoint,
   getRankData,
   saveUserInfo,
+  getLogin
 };

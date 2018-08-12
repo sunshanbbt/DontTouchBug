@@ -21,9 +21,10 @@
     <button
       class="btn"
       type='primary'
-      bindtap='startGame'
+      open-type='getUserInfo' 
+      bindgetuserinfo='bindGetUserInfo'
     >开始游戏</button>
-    <view class='rank' bindtap="gotoRanking">《排行榜》</view>
+    <view class='rank'  bindtap="gotoRanking"     >《排行榜》</view>
   </view>
 </view>
 
