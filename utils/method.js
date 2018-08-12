@@ -82,29 +82,31 @@ function saveUserScore(score, steps, time, difficut){
  * 埋点
  */
 function saveBuriedPoint(key, sub, data) {
-  wx.request({
-    url: config.saveBuriedPointUrl,
-    data: {
-      appId:'bug',
-      key: key,
-      sub: sub,
-      data: JSON.stringify(data),
-      timestamp: new Date().getTime(),
-      rdSessionKey,
-    },
-    header: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    method:'POST',
-    success: function (res) {
-      if ( res.data.code == 200 ) {
-        console.debug("插入埋点成功");
-        return true;
-      } else {
-        console.debug("插入埋点失败");
-        return false;
+  getCheckSession(() => {
+    wx.request({
+      url: config.saveBuriedPointUrl,
+      data: {
+        appId: 'bug',
+        key: key,
+        sub: sub,
+        data: JSON.stringify(data),
+        timestamp: new Date().getTime(),
+        rdSessionKey,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function (res) {
+        if (res.data.code == 200) {
+          console.debug("插入埋点成功");
+          return true;
+        } else {
+          console.debug("插入埋点失败");
+          return false;
+        }
       }
-    }
+    });
   });
 }
 

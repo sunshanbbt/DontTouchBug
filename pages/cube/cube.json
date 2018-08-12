@@ -1,5 +1,5 @@
 {
-  "navigationBarBackgroundColor": "#36aaff",
+  "navigationBarBackgroundColor": "#000",
   "usingComponents": {
     "bug-cube": "../../components/cube/cube",
     "score-modal": "../../components/score/score"

@@ -27,12 +27,12 @@
   display: block;
   position: absolute;
   top: 0;
-  background: linear-gradient(#db9e36, transparent);
+  background: linear-gradient(rgba(219,158,54, 1), rgba(219,158,54, 0));
   z-index: 10;
 }
 .m-select:after {
   top: 46pt;
-  background: linear-gradient(transparent, #db9e36);
+  background: linear-gradient(rgba(219,158,54, 0), rgba(219,158,54, 1));
 }
 .m-option {
   display: block;
