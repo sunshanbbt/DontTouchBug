@@ -25,4 +25,4 @@ App({
   onHide: function() {
     BuriedPoint.onCloseApp();
   },
-})
+});

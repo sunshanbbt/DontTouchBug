@@ -1,6 +1,7 @@
 // 引入配置文件config.js
 const config = require('../../utils/config.js');
 const method = require('../../utils/method.js');
+import { getShareMessage } from '../../utils/util.js';
 import * as BuriedPoint from '../../utils/buriedPoint.js';
 
 var app = getApp();
@@ -79,7 +80,7 @@ Page({
     let shareCode = `${shareBase}${shareBase}`
     BuriedPoint.onShare('login', shareCode);
     return {
-      title: '这个游戏还真是有点难',
+      title: getShareMessage(),
       path: `/pages/login/login?shareCode=${shareCode}`,
     };
   },

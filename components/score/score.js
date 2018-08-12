@@ -48,5 +48,6 @@ Component({
       score,
       strTime,
     });
+    wx.setStorageSync('lastScore', score);
   },
 })

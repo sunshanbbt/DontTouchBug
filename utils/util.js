@@ -43,8 +43,20 @@ const calcScore = (minite, second, steps, level) => {
   }
 }
 
+const SCORE_LEVEL_MESSAGE = [
+  '原来我的记忆力那么弱鸡',
+  '听说鱼的记忆只有7秒钟，我的恐怕只有1秒吧',
+  '我打开了记忆的盒子，里面竟然有这么多bug',
+];
+const getShareMessage = (score) => {
+  score = wx.getStorageSync('lastScore') || 0;
+  const score_level = parseInt(score / 200, 0);
+  return SCORE_LEVEL_MESSAGE[score_level] || '高处不胜寒，见过面就不遗忘';
+}
+
 module.exports = {
   formatTime: formatTime,
   formatNumber,
   calcScore,
+  getShareMessage,
 }

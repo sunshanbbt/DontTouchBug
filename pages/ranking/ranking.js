@@ -1,5 +1,7 @@
 // pages/ranking/ranking.js
 import method from '../../utils/method.js';
+import { getShareMessage } from '../../utils/util.js';
+import * as BuriedPoint from '../../utils/buriedPoint.js';
 
 Page({
 
@@ -88,6 +90,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    let shareBase = new Date().getTime().toString(32);
+    let uuid = parseInt(Math.random() * 10000, 10).toString(32);
+    let shareCode = `${shareBase}${shareBase}`
+    BuriedPoint.onShare('ranking', shareCode);
+    let score = this.data.userRank.score;
+
+    return {
+      title: getShareMessage(score),
+      path: `/pages/login/login?shareCode=${shareCode}`,
+    };
   }
 })

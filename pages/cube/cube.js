@@ -1,5 +1,5 @@
 // pages/cube/cube.js
-import { formatNumber } from '../../utils/util.js';
+import { formatNumber, getShareMessage } from '../../utils/util.js';
 import * as BuriedPoint from '../../utils/buriedPoint.js';
 
 const LEVEL_CONFIG_MAP = [ // 总大小，bug数，方块偏移，每次点击交换，出错时交换
@@ -173,9 +173,6 @@ Page({
 
     cubes[index].active = active;
     const left = this.countLeft(cubes);
-    if (left === 0) {
-      this.gameOver();
-    }
 
     if (bug) {
       // 先将需要清理的方块找好，1s后再清理
@@ -183,8 +180,14 @@ Page({
         return cube.active;
       });
       this.clearTimeout = setTimeout(() => {
+        delete this.clearTimeout;
         this.clearCubeState(waitClearCube);
       }, 1000);
+    }
+    
+    // 如果之前点击了bug还没清理，就不要结束
+    if (!this.clearTimeout && (left === 0)) {
+      this.gameOver();
     }
 
     this.setData({
@@ -330,9 +333,9 @@ Page({
     let shareBase = new Date().getTime().toString(32);
     let uuid = parseInt(Math.random() * 10000, 10).toString(32);
     let shareCode = `${shareBase}${shareBase}`
-    BuriedPoint.onShare('login', shareCode, this.collectGameEnv());
+    BuriedPoint.onShare('cube', shareCode, this.collectGameEnv());
     return {
-      title: '这个游戏还真是有点难',
+      title: getShareMessage(),
       path: `/pages/login/login?shareCode=${shareCode}`,
     };
   }
