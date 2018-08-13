@@ -21,7 +21,6 @@ Page({
   },
   
   gotoRanking: function () {
-   
       BuriedPoint.onGotoRank();
       wx.navigateTo({
         url: '/pages/ranking/ranking',
@@ -88,5 +87,4 @@ Page({
       path: `/pages/login/login?shareCode=${shareCode}`,
     };
   },
- 
 })

@@ -135,7 +135,7 @@ function getRankData(cb) {
 /**
  * 保存用户资料
  */
-function saveUserInfo(e) {
+function saveUserInfo(e, callback) {
   getCheckSession(() => {
     wx.request({
       url: config.saveUserUrl,
@@ -155,6 +155,7 @@ function saveUserInfo(e) {
       },
       success: function (res) {
         console.info("插入小程序登录用户信息成功！" + rdSessionKey);
+        callback && callback();
       }
     });
   });
