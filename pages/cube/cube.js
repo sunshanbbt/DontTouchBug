@@ -250,7 +250,7 @@ Page({
         bug: i <= bugCount,
       });
     }
-    list.sort(cube => Math.round(Math.random()));
+    list.sort(cube => (Math.random() - 0.5));
     // 根据初始排序分配id
     list = list.map((cube, index) => {
       cube.id = index;
