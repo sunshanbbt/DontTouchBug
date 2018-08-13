@@ -7,7 +7,6 @@ let rdSessionKey = wx.getStorageSync('rdSessionKey');
  * 校验session
  */
 function getCheckSession(callback) {
-  console.log("session")
   if (!rdSessionKey) { // 本地没有rdSessionKey的时候也要重新去拿
     return getLogin(callback);
   }

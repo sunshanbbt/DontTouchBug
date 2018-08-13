@@ -16,7 +16,7 @@ export function onGameBreak(env) {
 }
 
 export function onShare(page, shareCode, env) {
-  return saveBuriedPoint(BURIED_KEY.GAME, EVENT_SUB.SHARE, {
+  return saveBuriedPoint(BURIED_KEY.EVENT, EVENT_SUB.SHARE, {
     page,
     shareCode,
     env,

@@ -13,32 +13,11 @@ Page({
     height:0
   },
   bindGetUserInfo: function (e) {
-    method.getCheckSession(() => {
-      wx.request({
-        url: config.saveUserUrl,
-        data: {
-          nickName: e.detail.userInfo.nickName,
-          avatarUrl: e.detail.userInfo.avatarUrl,
-          province: e.detail.userInfo.province,
-          city: e.detail.userInfo.city,
-          province: e.detail.userInfo.province,
-          gender: e.detail.userInfo.gender,
-          country: e.detail.userInfo.country,
-          language: e.detail.userInfo.language,
-          rdSessionKey,
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          console.info("插入小程序登录用户信息成功！" + rdSessionKey);
-          wx.navigateTo({
-            url: '/pages/cube/cube',
-          });
-        }
+    method.saveUserInfo(e.detail, () => {
+      wx.navigateTo({
+        url: '/pages/cube/cube',
       });
-    });
-    
+    })
   },
   
   gotoRanking: function () {
