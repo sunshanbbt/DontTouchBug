@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/ranking/ranking",
-    "pages/cube/cube"
+    "pages/cube/cube",
+    "pages/ranking/ranking"
   ],
   "window": {
     "backgroundTextStyle": "light",

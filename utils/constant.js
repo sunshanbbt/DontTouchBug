@@ -21,4 +21,5 @@ export const EVENT_SUB = {
 
 export const ERROR_SUB = {
   GLOBAL: 0,
+  BUSSINESS: 1,
 };

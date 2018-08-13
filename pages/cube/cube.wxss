@@ -4,11 +4,12 @@
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: #db9e36;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 30%, transparent 0),
+  background: linear-gradient(-45deg, #454869, #422251);
+  /* background-color: #db9e36; */
+  /* background-image: radial-gradient(rgba(255, 255, 255, 0.3) 30%, transparent 0),
                     radial-gradient(rgba(255, 255, 255, 0.3) 30%, transparent 0);
   background-position: 0 0, 10px 10px;
-  background-size: 20px 20px;
+  background-size: 20px 20px; */
   padding: 0;
 }
 .header {
@@ -76,15 +77,26 @@
   line-height: 90vh;
 }
 .startAni .num {
-  font-size: 0;
   transition: all 300ms;
+  font-size: 30vw;
+  display: none;
 }
 .startAni.step_0 .num_0,
 .startAni.step_1 .num_1,
-.startAni.step_2 .num_2,
-.startAni.step_3 .num_3 {
-  font-size: 30vw;
+.startAni.step_2 .num_2 {
+  display: block;
 }
 .startAni.step_0 .num_0 {
-  font-size: 20vw;
+  animation: fadeOutDownBig 1s;
+}
+@keyframes fadeOutDownBig {
+  from {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(3, 3, 3);
+  }
 }

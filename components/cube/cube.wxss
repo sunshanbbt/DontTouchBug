@@ -20,10 +20,15 @@
   height: 60%;
   margin-top: 20%;
 }
+.cube .inner .seed {
+  width: 90%;
+  height: 90%;
+  margin-top: 5%;
+}
 .cube .inner.front {
   width: 100%;
   height: 100%;
-  background: #EEE;
+  background: linear-gradient(#FFF, #FFF);
   transform: rotateY(90deg);
   transition-delay: 200ms;
   text-align: center;

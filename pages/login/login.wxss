@@ -1,5 +1,8 @@
 .container {
-  background-color: #db9e36;
+  /* background-color: #db9e36; */
+  background: linear-gradient(-45deg, #454869, #422251);
+  background: linear-gradient(-45deg, #A684E2, #468AED);
+  background: linear-gradient(90deg, #7D6A9B, #507391);
   height: 100%;
   width: 100%;
   position: fixed;
@@ -21,7 +24,7 @@
 }
 .m-select:before,
 .m-select:after {
-  content: '';
+  /* content: ''; */
   width: 100%;
   height: 30pt;
   display: block;

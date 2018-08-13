@@ -47,3 +47,9 @@ export function onError(e) {
     error: e,
   });
 }
+
+export function onBusinessError(e) {
+  return saveBuriedPoint(BURIED_KEY.ERROR, ERROR_SUB.BUSINESS, {
+    error: e,
+  });
+}

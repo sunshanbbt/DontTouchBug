@@ -31,10 +31,9 @@
     </view>
   </view>
   <view wx:if="{{start}}" class="startAni step_{{startAni}}">
-    <text class="num num_3">3</text>
-    <text class="num num_2">2</text>
-    <text class="num num_1">1</text>
-    <text class="num num_0">START</text>
+    <text class="num num_2">躲开</text>
+    <text class="num num_1">那些</text>
+    <text class="num num_0">喵</text>
   </view>
   <score-modal
     wx:if="{{stop}}"
