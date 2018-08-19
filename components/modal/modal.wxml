@@ -1,0 +1,10 @@
+<view class="modal {{active ? 'active' : ''}}">
+  <view class="mask" bindtap="hide"></view>
+  <view class="inner">
+    <view class="head">游戏说明</view>
+    <view class="content">说明下游戏的玩法</view>
+    <view class="foot">
+      <text class="btn">知道啦</text>
+    </view>
+  </view>
+</view>

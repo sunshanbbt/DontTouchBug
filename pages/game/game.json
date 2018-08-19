@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#000",
+  "usingComponents": {
+    "bug-cube": "../../components/cube/cube",
+    "score-modal": "../../components/score/score",
+    "start-ani": "./startAni/startAni",
+    "header": "./header/header",
+    "modal": "../../components/modal/modal"
+  }
+}

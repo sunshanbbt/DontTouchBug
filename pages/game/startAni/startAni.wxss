@@ -1,0 +1,38 @@
+.startAni {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #FFF;
+  font-style: italic;
+  text-align: center;
+  line-height: 90vh;
+  left: 0;
+  top: 0;
+}
+.startAni .num {
+  transition: all 300ms;
+  font-size: 30vw;
+  display: none;
+}
+.startAni.step_0 {
+  display: none;
+}
+.startAni.step_1 .num_1,
+.startAni.step_2 .num_2,
+.startAni.step_3 .num_3 {
+  display: block;
+}
+.startAni.step_1 .num_1 {
+  animation: fadeOutDownBig 1s;
+}
+@keyframes fadeOutDownBig {
+  from {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(3, 3, 3);
+  }
+}

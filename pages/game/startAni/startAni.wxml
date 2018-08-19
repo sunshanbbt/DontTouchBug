@@ -1,0 +1,5 @@
+<view class="startAni step_{{count}}">
+  <text class="num num_3">躲开</text>
+  <text class="num num_2">那些</text>
+  <text class="num num_1">喵</text>
+</view>

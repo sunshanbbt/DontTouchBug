@@ -1,4 +1,3 @@
-
 const config = require('config.js');
 
 let rdSessionKey = wx.getStorageSync('rdSessionKey');
@@ -93,6 +92,7 @@ function saveBuriedPoint(key, sub, data) {
         data: JSON.stringify(data),
         timestamp: new Date().getTime(),
         rdSessionKey,
+        version: config.version,
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'

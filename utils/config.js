@@ -1,5 +1,6 @@
-const basePath = 'https://bug.ty1990.cn/api';
+const basePath = 'https://127.0.0.1/api';
 const config = {
+  version: '1.1.0',
   saveUserUrl: basePath + '/api/user/saveUser.htm',
   queryOpenIdUrl: basePath + '/api/wx/getOpenId.htm',
   saveUserScoreUrl: basePath + '/api/user/score/save.htm',

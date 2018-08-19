@@ -1,0 +1,45 @@
+<!--pages/cube/cube.wxml-->
+<view class="page">
+  <header
+    steps="{{steps}}"
+    time="{{time}}"
+    bindonShowTip="showTip"
+  />
+  <view
+    class="cubeContainer {{stop ? 'stopped' : ''}}"
+  >
+    <view
+      class="cubeBox"
+      wx:for="{{cubes}}"
+      wx:key="id"
+      style="transform: translateX({{item.offsetX}}vw) translateY({{item.offsetY}}vw)"
+    >
+      <bug-cube
+        size="{{cubeSize}}"
+        active="{{item.active}}"
+        bug="{{item.bug}}"
+        offsetX="{{item.offsetX}}"
+        offsetY="{{item.offsetY}}"
+        index="{{index}}"
+        bindcubetouch="onTouchCube"
+      >{{index}}</bug-cube>
+    </view>
+  </view>
+  <start-ani
+    show="start"
+    bindend="startAniEnd"
+  />
+  <score-modal
+    wx:if="{{stop}}"
+    level="{{level}}"
+    minite="{{minite}}"
+    second="{{second}}"
+    steps="{{steps}}"
+    bindrestart="restartGame"
+    bindback="backToIndex"
+  ></score-modal>
+  <modal
+    visible="{{tipVisible}}"
+    bindonHide="onHideTip"
+  ></modal>
+</view>

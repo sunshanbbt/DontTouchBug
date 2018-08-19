@@ -1,0 +1,16 @@
+<view class="header">
+    <view class="stepCount">
+      <image class="icon" src="../../../res/icons/foot.png" />
+      <text class="num">{{steps}}</text>
+    </view>
+    <view class="timer">
+      <image class="icon" src="../../../res/icons/clock.png" />
+      <view class="num time">{{time}}</view>
+    </view>
+    <view>
+      <image bindtap="showTip" class="icon" src="../../../res/icons/help.png" />
+    </view>
+    <modal
+      visible="{{tipVisible}}"
+    ></modal>
+  </view>
