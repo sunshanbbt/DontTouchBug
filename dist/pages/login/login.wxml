@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container">
+  <view
+    class="m-select"
+    bindtouchstart="handleSelectTouchStart"
+    bindtouchmove="handleSelectTouchMove"
+    bindtouchend ="handleSelectTouchEnd"
+  >
+    <view
+      class="m-text-select"
+      style='transform: translateY({{offsetY}}px)'
+    >
+      <text
+        wx:for="{{levels}}"
+        wx:key="{{index}}"
+        class="m-option line {{index === active ? 'active' : ''}}"
+      >{{item}}</text>
+    </view>
+  </view>
+  <view class="menu">
+    <button
+      class="btn"
+      type='primary'
+      open-type='getUserInfo' 
+      bindgetuserinfo='bindGetUserInfo'
+    >开始游戏</button>
+    <view class='rank'  bindtap="gotoRanking"     >《排行榜》</view>
+  </view>
+</view>
+
